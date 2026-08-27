@@ -1,0 +1,15 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- script: |
+    echo "Build started"
+    echo "Checking project files..."
+    ls -la
+    echo "Checking SQL file..."
+    cat sql/transaction_report.sql
+  displayName: "Build and Validate"
