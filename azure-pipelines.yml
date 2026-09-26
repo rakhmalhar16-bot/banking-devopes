@@ -7,9 +7,16 @@ pool:
 steps:
 
 - script: |
-    echo "Build started"
-    echo "Checking project files..."
+    echo "Checking project files"
     ls -la
-    echo "Checking SQL file..."
+    echo "Checking SQL file"
     cat sql/transaction_report.sql
-  displayName: "Build and Validate"
+  displayName: "Validate Source"
+
+- script: |
+    docker build -t banking-app:$(Build.BuildId) .
+  displayName: "Build Docker Image"
+
+- script: |
+    docker images
+  displayName: "Verify Docker Image"
